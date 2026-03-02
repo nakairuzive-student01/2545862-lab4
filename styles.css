@@ -1,3 +1,9 @@
+body{
+    margin: 1rem 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    align-items: center;
+}
+
 .spinner {
     /* Your styling */
     animation: spin 1s linear infinite; /* Required */
@@ -14,10 +20,36 @@
 }
 
 .error {
-    color: /* error color */;
-    /* Additional styling */
+    color: red;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 2rem;
 }
 
-.hidden {
-    display: none;
+.country-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: .2px solid black;
+    background-color: rgba(250, 255, 187,.5);
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.country-card img{
+    width: 200px;
+    border: 1px solid black;
+}
+
+.border-grid{
+    display: flex;
+    flex-direction: column;
+     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    background-color: rgba(250, 255, 187,.5);
+    padding: 2rem;
+    border: .2px solid black;
 }
