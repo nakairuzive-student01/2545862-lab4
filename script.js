@@ -8,12 +8,15 @@ let errorMessage = document.querySelector('#error-message');
 
 
 async function searchCountry(countryName){
+    const spinner = document.getElementById('loading-spinner');
     try{
         const response = await fetch("https://restcountries.com/v3.1/name/" + countryName);
         let data = await response.json();
 
         const country = data[0];
         //console.log(country);
+
+        spinner.classList.remove('hidden');
 
         document.getElementById('country-info').innerHTML = `
             <h2>${country.name.common}</h2>
@@ -22,23 +25,6 @@ async function searchCountry(countryName){
             <p><strong>Region:</strong> ${country.region}</p>
             <img src="${country.flags.svg}" alt="${country.name.common} flag">
         `;
-        
-
-        // const neighbours = country.borders;
-        // console.log(neighbour);
-        // neighbour.forEach(element => {
-        //     const nCountry = fetch ("https://restcountries.com/v3.1/alpha/" + element);
-        //     let data2 = nCountry.json();
-        //     const city = data2[0];
-
-        //     document.getElementById('country-info').innerHTML += `
-        //         <h2>$${city.name.common}</h2>
-        //         <img src="${city.flags.svg}" alt="${city.name.common} flag">
-        //     `;
-
-        //     console.log(element);
-            
-        // });
 
         const neighbours = country.borders;
 
@@ -69,7 +55,7 @@ async function searchCountry(countryName){
     } catch (error){
        document.querySelector('#error-message').innerHTML = "Could not load country data";
     } finally{
-        spinner.style.display = 'none';
+        spinner.classList.add('hidden');
     }
 }
 
