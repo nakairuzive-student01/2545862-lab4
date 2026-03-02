@@ -50,8 +50,6 @@ async function searchCountry(countryName){
         
             const neighborData = data2[0];
 
-           //document.getElementById('bordering-countries').innerHTML= `<h2>Neighbours</h2> `;
-           
             document.getElementById('bordering-countries').innerHTML += `
                 <div class="neighbor-card">
                     <h3>${neighborData.name.common}</h3>
@@ -60,21 +58,28 @@ async function searchCountry(countryName){
             `;
         } catch (err) {
             console.error(`Could not load neighbor: ${code}`, err);
-        }
-    }
-    } else {
-        document.getElementById('country-info').innerHTML += `<p>This country has no land borders.</p>`;
-    }
 
-            
-        } catch (error){
-        document.querySelector('#error-message').innerHTML = "Could not load country data";
-        } finally{
-            spinner.style.display = 'none';
         }
     }
+} else {
+    document.getElementById('country-info').innerHTML += `<p>This country has no land borders.</p>`;
+}
+
+        
+    } catch (error){
+       document.querySelector('#error-message').innerHTML = "Could not load country data";
+    } finally{
+        spinner.style.display = 'none';
+    }
+}
 
 document.getElementById('search-btn').addEventListener('click', () => {
+    document.querySelector('#bordering-countries').innerHTML = '';
+    document.querySelector('#error-message').innerHTML = '';
     const country = document.getElementById('country-input').value;
     searchCountry(country);
+    document.querySelector('#bordering-countries').innerHTML = `
+        <h2>These Are My Neighbours</h2>
+    `;
+    document.getElementById('country-input').value = '';
 });
